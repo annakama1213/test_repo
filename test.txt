@@ -1,0 +1,246 @@
+ec2-user:~/environment $ ls
+github.com  home.html  html1  images  memo  README.md  stylesheet.css
+ec2-user:~/environment $ 
+ec2-user:~/environment $ cd github.com
+ec2-user:~/environment/github.com $ ls
+test_repo
+ec2-user:~/environment/github.com $ cd test_repo
+ec2-user:~/environment/github.com/test_repo (main) $ git config
+usage: git config [<options>]
+
+Config file location
+    --global              use global config file
+    --system              use system config file
+    --local               use repository config file
+    --worktree            use per-worktree config file
+    -f, --file <file>     use given config file
+    --blob <blob-id>      read config from given blob object
+
+Action
+    --get                 get value: name [value-pattern]
+    --get-all             get all values: key [value-pattern]
+    --get-regexp          get values for regexp: name-regex [value-pattern]
+    --get-urlmatch        get value specific for the URL: section[.var] URL
+    --replace-all         replace all matching variables: name value [value-pattern]
+    --add                 add a new variable: name value
+    --unset               remove a variable: name [value-pattern]
+    --unset-all           remove all matches: name [value-pattern]
+    --rename-section      rename section: old-name new-name
+    --remove-section      remove a section: name
+    -l, --list            list all
+    --fixed-value         use string equality when comparing values to 'value-pattern'
+    -e, --edit            open an editor
+    --get-color           find the color configured: slot [default]
+    --get-colorbool       find the color setting: slot [stdout-is-tty]
+
+Type
+    -t, --type <>         value is given this type
+    --bool                value is "true" or "false"
+    --int                 value is decimal number
+    --bool-or-int         value is --bool or --int
+    --bool-or-str         value is --bool or string
+    --path                value is a path (file or directory name)
+    --expiry-date         value is an expiry date
+
+Other
+    -z, --null            terminate values with NUL byte
+    --name-only           show variable names only
+    --includes            respect include directives on lookup
+    --show-origin         show origin of config (file, standard input, blob, command line)
+    --show-scope          show scope of config (worktree, local, global, system, command)
+    --default <value>     with --get, use default value when missing entry
+
+ec2-user:~/environment/github.com/test_repo (main) $ git config --global user.name “annakama1213”
+ec2-user:~/environment/github.com/test_repo (main) $ git config --global user.email anna.uk1213@gmail.com
+ec2-user:~/environment/github.com/test_repo (main) $ git config --list
+credential.helper=!aws codecommit credential-helper $@
+credential.usehttppath=true
+core.editor=nano
+user.name=“annakama1213”
+user.email=anna.uk1213@gmail.com
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+remote.origin.url=https://github.com/annakama1213/test_repo.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+branch.main.remote=origin
+branch.main.merge=refs/heads/main
+ec2-user:~/environment/github.com/test_repo (main) $ ls
+home.html  README.md
+ec2-user:~/environment/github.com/test_repo (main) $ git init
+Reinitialized existing Git repository in /home/ec2-user/environment/github.com/test_repo/.git/
+ec2-user:~/environment/github.com/test_repo (main) $ git add home.html
+ec2-user:~/environment/github.com/test_repo (main) $ git commit -m ‘最初のコミット’
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+ec2-user:~/environment/github.com/test_repo (main) $ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+ec2-user:~/environment/github.com/test_repo (main) $ ls ~/.ssh
+authorized_keys  config  id_rsa  id_rsa.pub  known_hosts  known_hosts.old
+ec2-user:~/environment/github.com/test_repo (main) $ cat ~/.ssh/id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDKRsybFhu6RGV4L4DlsNNynfAo4gNtXqSWoYsnUZRIZn7Mf4irGeQLN5DNo0OQymvg2rezbuCAfdrHp0LDovgo1gu4e+xrCXaJW/bBFOQK1aViYvVIzLArR/2IEJUGfZzqNx7n8mvo09SgfzlB9ls/P4ibCJWwWQVMZr++/yolBBSztnzTz0CTlH3y8854pYbgQG9qzmm2bFjTY7ZosZnL3UNFT3knwjSPb+MXs/D4SGrY8f6zuLWhStiwT3RVchYA5BdntmXaNP667mDL47TqCvyahCZ1Zlsrv8f9M+bC7GJsDE4wC9CjwlYPrBNwoWWOv4Lfg7jZsTy5NR38fG27 anna.uk1213@gmail.com
+ec2-user:~/environment/github.com/test_repo (main) $ ssh-keygen -t rsa -C anna.uk1213@gmail.com
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/ec2-user/.ssh/id_rsa): 
+/home/ec2-user/.ssh/id_rsa already exists.
+Overwrite (y/n)? 
+ec2-user:~/environment/github.com/test_repo (main) $ ssh -T git@github.com
+Hi annakama1213! You've successfully authenticated, but GitHub does not provide shell access.
+ec2-user:~/environment/github.com/test_repo (main) $ git remote add origin git@github.com:annakama1213/test_repo.git
+error: remote origin already exists.
+ec2-user:~/environment/github.com/test_repo (main) $ git remote -v
+origin  https://github.com/annakama1213/test_repo.git (fetch)
+origin  https://github.com/annakama1213/test_repo.git (push)
+ec2-user:~/environment/github.com/test_repo (main) $ git push -u origin main
+Username for 'https://github.com/annakama1213/test_repo.git': annakama1213
+Password for 'https://annakama1213@github.com/annakama1213/test_repo.git': 
+remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
+remote: Please see https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/ for more information.
+fatal: Authentication failed for 'https://github.com/annakama1213/test_repo.git/'
+ec2-user:~/environment/github.com/test_repo (main) $ git push -u origin main
+Username for 'https://github.com/annakama1213/test_repo.git': annakama1213
+Password for 'https://annakama1213@github.com/annakama1213/test_repo.git': 
+remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
+remote: Please see https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/ for more information.
+fatal: Authentication failed for 'https://github.com/annakama1213/test_repo.git/'
+ec2-user:~/environment/github.com/test_repo (main) $ cat ~/.ssh/id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDKRsybFhu6RGV4L4DlsNNynfAo4gNtXqSWoYsnUZRIZn7Mf4irGeQLN5DNo0OQymvg2rezbuCAfdrHp0LDovgo1gu4e+xrCXaJW/bBFOQK1aViYvVIzLArR/2IEJUGfZzqNx7n8mvo09SgfzlB9ls/P4ibCJWwWQVMZr++/yolBBSztnzTz0CTlH3y8854pYbgQG9qzmm2bFjTY7ZosZnL3UNFT3knwjSPb+MXs/D4SGrY8f6zuLWhStiwT3RVchYA5BdntmXaNP667mDL47TqCvyahCZ1Zlsrv8f9M+bC7GJsDE4wC9CjwlYPrBNwoWWOv4Lfg7jZsTy5NR38fG27 anna.uk1213@gmail.com
+ec2-user:~/environment/github.com/test_repo (main) $ ssh -T git@github.com
+Hi annakama1213! You've successfully authenticated, but GitHub does not provide shell access.
+ec2-user:~/environment/github.com/test_repo (main) $ git push -u origin main
+Username for 'https://github.com/annakama1213/test_repo.git': annakama1213
+Password for 'https://annakama1213@github.com/annakama1213/test_repo.git': 
+remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
+remote: Please see https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/ for more information.
+fatal: Authentication failed for 'https://github.com/annakama1213/test_repo.git/'
+[core]
+ec2-user:~/environment/github.com/test_repo (main) $ ls ~/.ssh
+authorized_keys  config  id_rsa  id_rsa.pub  known_hosts  known_hosts.old
+ec2-user:~/environment/github.com/test_repo (main) $ pwd
+/home/ec2-user/environment/github.com/test_repo
+ec2-user:~/environment/github.com/test_repo (main) $ ls
+home.html  README.md
+ec2-user:~/environment/github.com/test_repo (main) $ ls -a
+.  ..  .git  .gitignore  home.html  README.md
+ec2-user:~/environment/github.com/test_repo (main) $ cat .git/config
+[core]
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+        logallrefupdates = true
+[remote "origin"]
+        url = https://github.com/annakama1213/test_repo.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "main"]
+        remote = origin
+        merge = refs/heads/main
+ec2-user:~/environment/github.com/test_repo (main) $ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+ec2-user:~/environment/github.com/test_repo (main) $ git log
+commit 826846cc14282b36dd264f223d23e5f519e55879 (HEAD -> main)
+Author: annakamada1213 <anna.uk1213@gmail.com>
+Date:   Fri Nov 26 14:59:40 2021 +0000
+
+    ‘最初のコミット’
+
+commit ff72702c62ae83503f44f22b6116c24c351cfbda (origin/main, origin/HEAD)
+Author: annakama1213 <94678706+annakama1213@users.noreply.github.com>
+Date:   Fri Nov 19 19:50:00 2021 +0900
+
+    Initial commit
+ec2-user:~/environment/github.com/test_repo (main) $ vim .git/config
+ec2-user:~/environment/github.com/test_repo (main) $ cat .git/config
+[core]
+        repositoryformatversion = 0
+        filemode = true
+        bare = false
+        logallrefupdates = true
+[remote "origin"]
+        url = git@github.com:annakama1213/test_repo.git
+        fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "main"]
+        remote = origin
+        merge = refs/heads/main
+ec2-user:~/environment/github.com/test_repo (main) $ git push -u origin main
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 1.11 KiB | 567.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:annakama1213/test_repo.git
+   ff72702..826846c  main -> main
+Branch 'main' set up to track remote branch 'main' from 'origin'.
+ec2-user:~/environment/github.com/test_repo (main) $ git branch
+* main
+ec2-user:~/environment/github.com/test_repo (main) $ git checkout -b test_branch
+Switched to a new branch 'test_branch'
+ec2-user:~/environment/github.com/test_repo (test_branch) $ git branch
+  main
+* test_branch
+ec2-user:~/environment/github.com/test_repo (test_branch) $ touch test.txt
+ec2-user:~/environment/github.com/test_repo (test_branch) $ ls
+home.html  README.md  test.txt
+ec2-user:~/environment/github.com/test_repo (test_branch) $ git status
+On branch test_branch
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        test.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+ec2-user:~/environment/github.com/test_repo (test_branch) $ git add test.txt
+ec2-user:~/environment/github.com/test_repo (test_branch) $ git status
+On branch test_branch
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   test.txt
+
+ec2-user:~/environment/github.com/test_repo (test_branch) $ git commit -m "test log" 
+[test_branch 216b4af] test log
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 test.txt
+ec2-user:~/environment/github.com/test_repo (test_branch) $ git push origin test_branch
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 275 bytes | 275.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+remote: 
+remote: Create a pull request for 'test_branch' on GitHub by visiting:
+remote:      https://github.com/annakama1213/test_repo/pull/new/test_branch
+remote: 
+To github.com:annakama1213/test_repo.git
+ * [new branch]      test_branch -> test_branch
+ec2-user:~/environment/github.com/test_repo (test_branch) $ ls -a
+.  ..  .git  .gitignore  home.html  README.md  test.txt
+ec2-user:~/environment/github.com/test_repo (test_branch) $ git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+ec2-user:~/environment/github.com/test_repo (main) $ ls
+home.html  README.md
+ec2-user:~/environment/github.com/test_repo (main) $ git pull origin main
+remote: Enumerating objects: 1, done.
+remote: Counting objects: 100% (1/1), done.
+remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (1/1), 675 bytes | 675.00 KiB/s, done.
+From github.com:annakama1213/test_repo
+ * branch            main       -> FETCH_HEAD
+   826846c..1be8cd8  main       -> origin/main
+Updating 826846c..1be8cd8
+Fast-forward
+ test.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 test.txt
+ec2-user:~/environment/github.com/test_repo (main) $ 
